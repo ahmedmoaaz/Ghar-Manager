@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ghar Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main>
+    <h1>Ghar Manager</h1>
+    <p class="sub">Every bill, on time. Every rupee, counted.</p>
+
+    <section id="auth" class="auth" hidden>
+      <h2>Welcome</h2>
+      <label for="em">Email</label><input id="em" type="email" autocomplete="email">
+      <label for="pw">Password (at least 6 characters)</label><input id="pw" type="password"
+        autocomplete="current-password">
+      <div class="actions"><button class="btn ghost" id="signup">Create account</button><button class="btn"
+          id="login">Log in</button></div>
+      <p class="msg" id="amsg" role="alert"></p>
+    </section>
+
+    <div id="app" hidden>
+      <section class="hero" aria-live="polite">
+        <div class="lbl">To pay now: overdue + due in 7 days</div>
+        <div class="big" id="dueAmt">₹0</div>
+        <div class="row">
+          <div><b id="dueN">0</b><br>bills coming</div>
+          <div><b id="overN">0</b><br>overdue</div>
+          <div><b id="monthAmt">₹0</b><br>paid this month</div>
+        </div>
+      </section>
+      <nav role="tablist"><button role="tab" id="tb-bills" aria-selected="true">Bills</button><button role="tab"
+          id="tb-spend" aria-selected="false">Overview</button></nav>
+      <p class="msg" id="msg" role="alert"></p>
+      <div id="view"></div>
+      <div class="foot"><span class="meta" id="who"></span><button class="btn ghost" id="out">Log out</button></div>
+    </div>
+  </main>
+  <button class="btn fab" id="add" hidden>+ Add bill</button>
+
+  <dialog id="dlg">
+    <form method="dialog" id="f">
+      <h2 style="margin:0 0 4px">Add a bill</h2>
+      <label for="n">Bill name</label><input id="n" required maxlength="40"
+        placeholder="Electricity, WiFi, school fees">
+      <label for="a">Amount (₹)</label><input id="a" type="number" min="1" step="1" inputmode="numeric" required>
+      <label for="d">Due date</label><input id="d" type="date" required>
+      <label for="c">Category</label>
+      <select id="c">
+        <option>Utilities</option>
+        <option>Rent &amp; EMI</option>
+        <option>Internet &amp; phone</option>
+        <option>Education</option>
+        <option>Insurance</option>
+        <option>Household help</option>
+        <option>Other</option>
+      </select>
+      <div class="chk"><input id="r" type="checkbox" checked><label for="r" style="margin:0">Repeats every month</label>
+      </div>
+      <div class="actions"><button type="button" class="btn ghost" id="cx">Cancel</button><button class="btn" id="sv"
+          value="save">Save bill</button></div>
+    </form>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
